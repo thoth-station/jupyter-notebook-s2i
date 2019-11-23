@@ -1,0 +1,5 @@
+# s2i-lib.sh
+# Copyright 2019 Marek Cermak <macermak@redhat.com>, Vaclav Pavlin <vpavlin@redhat.com>
+
+source "execution.sh"
+source "requirements.sh"
