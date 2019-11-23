@@ -1,13 +1,6 @@
-#!/bin/bash
-# TODO: This lib can eventually be turned into a Python script
+# Jupyter Notebook requirements management
 
-set -euxo
-
-
-die() {
-	echo -e "$1" &>2
-	exit 1
-}
+source "common.sh"
 
 _cleanup() {
 	return 0

@@ -1,0 +1,11 @@
+#!/bin/bash -e
+#
+# S2I run script for the 's2i-jupyter-ubi8-py36' image.
+# The run script executes the Jupyter notebook with given parameters.
+#
+# For more information see the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+echo "---> Running Jupyter Notebook..."
+
+source /usr/libexec/s2i-lib/main && notebook::execution::run

@@ -1,5 +1,10 @@
-# s2i-lib.sh
+# s2i-lib
 # Copyright 2019 Marek Cermak <macermak@redhat.com>, Vaclav Pavlin <vpavlin@redhat.com>
 
+pushd $(dirname ${BASH_SOURCE[0]})
+
+source "common.sh"
 source "execution.sh"
 source "requirements.sh"
+
+popd
