@@ -15,7 +15,7 @@ notebook::execution::run() {
 
     papermill "$JUPYTER_NOTEBOOK_PATH" "$output_notebook" \
         -p model_dir="$MODEL_OUTPUT_DIR" \
-        --kernel $JUPYTER_NOTEBOOK_KERNEL
+        --kernel "$JUPYTER_NOTEBOOK_KERNEL" \
         --report-mode \
         --request-save-on-cell-execute
 }

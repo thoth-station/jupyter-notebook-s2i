@@ -34,8 +34,6 @@ echo "---> Success"
 # --- S2I main assemble logic ---
 echo "---> Building application from source..."
 
-export JUPYTER_NOTEBOOK_PATH=${JUPYTER_NOTEBOOK_PATH:-"$(find $PWD -type f -name '*.ipynb' | head -n 1)"}
-
 source /usr/libexec/s2i-lib/main && notebook::requirements::install
 
 echo "---> Success"
