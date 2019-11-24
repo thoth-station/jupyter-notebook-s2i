@@ -18,6 +18,9 @@ IMAGE_NAME=${IMAGE_NAME:-jupyter-notebook-s2i}
 # Port the image exposes service to be tested
 TEST_PORT=8080
 
+# Whether to do cleanup after the test
+CLEAUP=${CLEANUP:-true}
+
 # Since we built the candidate image locally, we don't want S2I to attempt to pull
 # it from Docker hub
 STI_ARGS="--pull-policy=never --loglevel=2"
@@ -120,9 +123,10 @@ test_usage() {
 }
 
 test_output() {
-  echo "Testing papermill output notebook."
+  echo "Testing s2i output."
 
   local output_notebook="${test_dir}/output.ipynb"
+
   docker cp "$(cat ${cid_file})":'/opt/app-root/src/output.ipynb' "${output_notebook}"
 
   local result=0
@@ -130,6 +134,8 @@ test_output() {
     echo "An exception occurred during notebook execution."
     result=1
   fi
+
+  [ "$CLEANUP" == "true" ] && rm "${output_notebook}"
 
   return $result
 }
@@ -153,4 +159,4 @@ wait_for_cid
 test_output
 check_result $?
 
-cleanup
+[ "$CLEANUP" == "true" ] && cleanup
