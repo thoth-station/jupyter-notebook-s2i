@@ -2,6 +2,7 @@
 
 source "common.sh"
 
+
 _cleanup() {
 	return 0
 }
@@ -42,13 +43,13 @@ notebook::requirements::get() {
 notebook::requirements::install() {
 	: "${JUPYTER_NOTEBOOK_PATH?Must set JUPYTER_NOTEBOOK_PATH environment variable}"
 
-	[ ! -f "$JUPYTER_NOTEBOOK_PATH" ] && die "File $JUPYTER_NOTEBOOK_PATH not found."
+	[ ! -f "$JUPYTER_NOTEBOOK_PATH" ] && die "File $JUPYTER_NOTEBOOK_PATH NOT found."
 
 	echo "--- Installing notebook requirements"
 
 	local requirements=$(notebook::requirements::get "$JUPYTER_NOTEBOOK_PATH")
-	if [ -z ${requirements} ]; then
-		&>2 echo -e "Notebook doesn't have any requirements. Skipping installation."
+	if [ -z "$requirements" ]; then
+		>&2 echo -e "Notebook doesn't have any requirements. Skipping installation."
 		return 0
 	else
 		echo -e "Required packages: ${requirements}"""
