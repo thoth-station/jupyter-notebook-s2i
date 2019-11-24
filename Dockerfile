@@ -1,15 +1,15 @@
 # Jupyter Notebook S2I builder image
 FROM registry.access.redhat.com/ubi8/python-36
 
-ENV SUMMARY="Python 3.6 Source-to-Image for Jupyter notebooks" \
-    DESCRIPTION="Python 3.6 Source-to-Image for Jupyter notebooks. This toolchain is based on Red Hat UBI8. It includes pipenv."
+ENV SUMMARY="Jupyter Notebook s2i builder image." \
+    DESCRIPTION="Jupyter Notebook s2i builder image. This toolchain is based on Red Hat UBI8. It includes pipenv."
 
 LABEL summary="$SUMMARY" \
     description="$DESCRIPTION" \
     io.k8s.description="$DESCRIPTION" \
-    io.k8s.display-name="Jupyter notebook Python 3.6-ubi8 S2I" \
+    io.k8s.display-name="Jupyter Notebook STI" \
     io.openshift.tags="builder,jupyter,notebook,python,python36" \
-    name="s2i-jupyter-ubi8-py36:latest" \
+    name="jupyter-notebook-s2i:latest" \
     vendor="AICoE, Office of the CTO, Red Hat Inc." \
     version="0.1.0" \
     release="0" \

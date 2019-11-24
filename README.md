@@ -1,2 +1,4 @@
 # jupyter-notebook-builder
-Jupyter notebook builder image for reproducible S2I workflows.
+[![Docker Repository on Quay](https://quay.io/repository/cermakm/jupyter-notebook-s2i/status "Docker Repository on Quay")](https://quay.io/repository/cermakm/jupyter-notebook-s2i)
+
+Jupyter notebook s2i builder image.
