@@ -1,7 +1,5 @@
 # Common functionality
 
-set -euxo
-
 # Kernel to be used to execute the notebook
 export JUPYTER_NOTEBOOK_KERNEL="${JUPYTER_NOTEBOOK_KERNEL:-python3}"
 

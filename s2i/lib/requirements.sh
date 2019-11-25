@@ -1,8 +1,5 @@
 # Jupyter Notebook requirements management
 
-source "common.sh"
-
-
 _cleanup() {
 	return 0
 }
@@ -43,7 +40,10 @@ notebook::requirements::get() {
 notebook::requirements::install() {
 	: "${JUPYTER_NOTEBOOK_PATH?Must set JUPYTER_NOTEBOOK_PATH environment variable}"
 
-	[ ! -f "$JUPYTER_NOTEBOOK_PATH" ] && die "File $JUPYTER_NOTEBOOK_PATH NOT found."
+	if [ ! -f "$JUPYTER_NOTEBOOK_PATH" ] || [ "$(cat "$JUPYTER_NOTEBOOK_PATH")" == "" ]
+	then
+		die "File $JUPYTER_NOTEBOOK_PATH NOT found."
+	fi
 
 	echo "--- Installing notebook requirements"
 

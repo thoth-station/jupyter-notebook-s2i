@@ -18,7 +18,7 @@ echo "---> Restoring build artifacts..."
 # Restore artifacts from the previous build (if they exist).
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   mv /tmp/artifacts/. ./
-  echo "---> Success"
+  echo "---> Success."
 else
   echo "---> Skipped."
 fi
@@ -28,12 +28,14 @@ echo "---> Installing application source..."
 
 cp -Rf /tmp/src/. ./
 
-echo "---> Success"
+echo "---> Success."
 
 
 # --- S2I main assemble logic ---
 echo "---> Building application from source..."
 
+echo -e "Current working directory: $PWD\n$(ls -calh)"
+
 source /usr/libexec/s2i-lib/main && notebook::requirements::install
 
-echo "---> Success"
+echo "---> Success."

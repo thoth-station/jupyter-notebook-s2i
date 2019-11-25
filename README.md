@@ -3,10 +3,6 @@
 
 Jupyter notebook s2i builder image.
 
-## Test
-
-To test that everything works properly, run `make test`
-
 ## Usage
 
 ```bash
@@ -40,3 +36,7 @@ cat /tmp/output.ipynb | jq -r '.metadata.papermill'
 ## Parametrization
 
 TBD
+
+## Test
+
+To test that everything works properly, run `make test`

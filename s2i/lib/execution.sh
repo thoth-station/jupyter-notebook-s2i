@@ -1,8 +1,5 @@
 # Jupyter notebook execution
 
-source "common.sh"
-
-
 _cleanup() {
 	return 0
 }

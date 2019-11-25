@@ -1,6 +1,8 @@
 # s2i-lib
 # Copyright 2019 Marek Cermak <macermak@redhat.com>, Vaclav Pavlin <vpavlin@redhat.com>
 
+set -euxo
+
 pushd $(dirname ${BASH_SOURCE[0]})
 
 source "common.sh"
