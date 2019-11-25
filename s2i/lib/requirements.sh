@@ -53,7 +53,7 @@ notebook::requirements::install() {
 		return 0
 	else
 		echo -e "Required packages: ${requirements}"""
-		pipenv install ${requirements}
+		pipenv install --verbose ${requirements}
 	fi
 
 	_cleanup
