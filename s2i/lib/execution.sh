@@ -38,12 +38,12 @@ notebook::execution::prep() {
 #   [required] JUPYTER_NOTEBOOK_PATH: path to the notebook
 notebook::execution::run() {
 	: "${JUPYTER_NOTEBOOK_PATH?Must set JUPYTER_NOTEBOOK_PATH environment variable}"
+	: "${PAPERMILL_OUTPUT_PATH?Must set PAPERMILL_OUTPUT_PATH environment variable}"
 
 	[ ! -f "$JUPYTER_NOTEBOOK_PATH" ] && die "File $JUPYTER_NOTEBOOK_PATH NOT found."
 
-    local output_notebook="$(dirname $JUPYTER_NOTEBOOK_PATH)/output.ipynb"
-
     mkdir -p "$MODEL_OUTPUT_DIR"
+    mkdir -p $(dirname "$PAPERMILL_OUTPUT_PATH")
 
     notebook::execution::prep "$JUPYTER_NOTEBOOK_PATH" || die "--- Notebook preparation FAILED"
 
@@ -53,6 +53,6 @@ notebook::execution::run() {
         --kernel "$JUPYTER_NOTEBOOK_KERNEL" \
         --report-mode \
         --request-save-on-cell-execute \
-        "$JUPYTER_NOTEBOOK_PATH" "$output_notebook" || die "--- Notebook execution FAILED."
+        "$JUPYTER_NOTEBOOK_PATH" "$PAPERMILL_OUTPUT_PATH" || die "--- Notebook execution FAILED."
     echo "--- Success."; return 0
 }
