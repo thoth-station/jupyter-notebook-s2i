@@ -1,7 +1,6 @@
 # Jupyter Notebook S2I builder image
 FROM registry.access.redhat.com/ubi8/python-36
 
-ARG ARTIFACT_DIR="/mnt/artifacts"
 ENV SUMMARY="Jupyter Notebook s2i builder image." \
     DESCRIPTION="Jupyter Notebook s2i builder image. This toolchain is based on Red Hat UBI8. It includes pipenv."
 
@@ -16,10 +15,6 @@ LABEL summary="$SUMMARY" \
     release="0" \
     maintainer="Marek Cermak <macermak@redhat.com>"
 
-# Copy builder scripts
-COPY ./s2i/bin/ /usr/libexec/s2i
-COPY ./s2i/lib/ /usr/libexec/s2i-lib
-
 # Install required packages and setup environment
 USER 0
 
@@ -29,11 +24,15 @@ RUN curl \
     chmod +x /usr/bin/jq && \
     pip3 install pipenv==2018.11.26 ipython ipykernel papermill[s3]
 
-RUN mkdir -p ${ARTIFACT_DIR} && \
-    chown -R 1001:0 /usr/libexec/s2i /usr/libexec/s2i-lib && \
+# Copy builder scripts
+COPY ./s2i/bin/ /usr/libexec/s2i
+COPY ./s2i/lib/ /usr/libexec/s2i-lib
+
+RUN chown -R 1001:0 /usr/libexec/s2i /usr/libexec/s2i-lib && \
     chown -R 1001:0 ${APP_ROOT} && \
-    chown -R 1001:0 ${ARTIFACT_DIR} && \
-    fix-permissions ${APP_ROOT} -P
+    fix-permissions ${APP_ROOT} -P && \
+    fix-permissions /usr/libexec/s2i -P && \
+    fix-permissions /usr/libexec/s2i-lib -P
 
 USER 1001
 # Set the default CMD for the image
