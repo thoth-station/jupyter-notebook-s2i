@@ -1,9 +1,10 @@
+#!/bin/bash
 # s2i-lib
 # Copyright 2019 Marek Cermak <macermak@redhat.com>, Vaclav Pavlin <vpavlin@redhat.com>
 
-set -euxo pipefail
+set -euo pipefail
 
-pushd $(dirname ${BASH_SOURCE[0]})
+pushd $( [ ! -z $BASH ] && dirname "${BASH_SOURCE[0]}" || dirname "$0" )
 
 source "common.sh"
 source "execution.sh"

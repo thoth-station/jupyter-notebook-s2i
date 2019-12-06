@@ -12,9 +12,13 @@ _cleanup() {
 notebook::requirements::get() {
 	local notebook="$1"
 
+	if [ "$( cat "$notebook" | jq -c '.metadata.requirements' )" == "null" ]; then
+		echo ""; return 0
+	fi
+
 	local requirements=$(
 		cat "$notebook" | \
-		jq -r '.metadata.requirements | { "dev-packages" } * { packages } | add | to_entries' |\
+		jq -c '.metadata.requirements | { "dev-packages" } * { packages } | add | to_entries' |\
 		jq -c '.[]' \
 	)
 
