@@ -13,7 +13,7 @@ notebook::requirements::get() {
 	local notebook="$1"
 
 	if [ "$( cat "$notebook" | jq -c '.metadata.requirements' )" == "null" ]; then
-		echo ""; return 0
+		echo "null" ; return 0
 	fi
 
 	local requirements=$(
@@ -52,7 +52,7 @@ notebook::requirements::install() {
 	echo "--- Installing notebook requirements"
 
 	local requirements=$(notebook::requirements::get "$JUPYTER_NOTEBOOK_PATH")
-	if [ -z "$requirements" ]; then
+	if [ -z "$requirements" ] || [ "$requirements" == "null" ]; then
 		>&2 echo -e "Notebook doesn't have any requirements. Skipping installation."
 		return 0
 	else
