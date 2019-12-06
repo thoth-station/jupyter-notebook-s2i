@@ -4,10 +4,10 @@
 
 set -euo pipefail
 
-pushd $( [ ! -z $BASH ] && dirname "${BASH_SOURCE[0]}" || dirname "$0" )
+pushd $( [ ! -z $BASH ] && dirname "${BASH_SOURCE[0]}" || dirname "$0" ) > /dev/null
 
 source "common.sh"
 source "execution.sh"
 source "requirements.sh"
 
-popd
+popd > /dev/null
